@@ -3,7 +3,7 @@ import cPickle as pickle
 import IPython
 import numpy as np
 
-from fast_grasp_detect.data_aug.augment_lighting import get_lighting
+from fast_grasp_detect.data_aug.augment_lighting import get_lighting, get_depth_aug
 import copy
 HALF_LENGTH = 15
 
@@ -40,18 +40,26 @@ def flip_data_horizontal(img,label,clss):
 	
 
 
-def augment_data(data):
+def augment_data(data,depth_data = False):
 
 	augmented_data = []
 
-	img = data['c_img']
+	if depth_data:
+		img = data['d_img']
+		
+	else:
+		img = data['c_img']
+
 	label = data['pose']
 	clss = data['class']
 
 	if label == None: 
 		label = [0,0]
 	
-	light_imgs = get_lighting(img)
+	if depth_data:
+		light_imgs = get_depth_aug(img)
+	else:
+		light_imgs = get_lighting(img)
 
 	for l_imgs in light_imgs:
 

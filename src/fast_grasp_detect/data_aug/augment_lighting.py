@@ -51,6 +51,14 @@ def addSaltPepperNoise(src):
     out[coords[:-1]] = (0,0,0)
     return out
 
+def get_depth_aug(img_src):
+    trans_img = []
+    trans_img.append(img_src)
+    trans_img.append(addGaussianNoise(img_src))
+    trans_img.appned(addSaltPepperNoise(img_src))
+
+    return trans_img
+
 def get_lighting(img_src):
     # ルックアップテーブルの生成
     min_table = 50

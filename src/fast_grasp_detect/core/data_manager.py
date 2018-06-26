@@ -10,6 +10,7 @@ import glob
 
 from fast_grasp_detect.core.yolo_conv_features_cs import YOLO_CONV
 from fast_grasp_detect.data_aug.data_augment import augment_data
+from fast_grasp_detect.data_aug.depth_preprocess import datum_to_net_dim
 
 
 
@@ -137,12 +138,13 @@ class data_manager(object):
             #rollout_p = rollouts[0]  
             rollout = pickle.load(open(rollout_p+'/rollout.p'))
 
-            print rollout_p
             grasp_rollout = self.cfg.break_up_rollouts(rollout)
 
             for grasp_point in grasp_rollout:
-                    print "TEST EXAMPLE", rollout_p
-                    
+
+                    if cfg.USE_DEPTH:
+                        grasp_point = datum_to_net_dim(grasp_point)
+                        
                     features = self.yc.extract_conv_features(grasp_point[0]['c_img'])
 
                     label = self.cfg.compute_label(grasp_point[0])
@@ -168,10 +170,6 @@ class data_manager(object):
             #rollout_p = rollouts[0]  
             rollout = pickle.load(open(rollout_p+'/rollout.p'))
 
-          
-            print rollout_p
-            print len(rollout)
-
             grasp_rollout = self.cfg.break_up_rollouts(rollout)
             for grasp_point in grasp_rollout:
             
@@ -179,8 +177,11 @@ class data_manager(object):
                 count = 0
                 
                 for data in grasp_point:
+
+                    if cfg.USE_DEPTH:
+                        data = datum_to_net_dim(data)
                     
-                    data_a = augment_data(data)
+                    data_a = augment_data(data,self.cfg.USE_DEPTH)
                     
                     for datum_a in data_a:
                         
@@ -189,6 +190,7 @@ class data_manager(object):
                         label = self.cfg.compute_label(datum_a)
 
                         self.train_labels.append({'c_img': datum_a['c_img'], 'label': label, 'features':features})
+
                 self.train_data_path.append(rollout_p)
 
        
