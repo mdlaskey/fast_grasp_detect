@@ -91,7 +91,7 @@ class CONFIG(object):
 		self.DISP_CONSOLE = True
 
 
-		self.USE_DEPTH = False
+		self.USE_DEPTH = True
 		self.RESOLUTION = 10
 
 
