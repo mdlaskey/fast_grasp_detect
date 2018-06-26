@@ -142,8 +142,8 @@ class data_manager(object):
 
             for grasp_point in grasp_rollout:
 
-                    if cfg.USE_DEPTH:
-                        grasp_point = datum_to_net_dim(grasp_point)
+                    if self.cfg.USE_DEPTH:
+                        grasp_point[0] = datum_to_net_dim(grasp_point[0])
                         
                     features = self.yc.extract_conv_features(grasp_point[0]['c_img'])
 
@@ -178,7 +178,7 @@ class data_manager(object):
                 
                 for data in grasp_point:
 
-                    if cfg.USE_DEPTH:
+                    if self.cfg.USE_DEPTH:
                         data = datum_to_net_dim(data)
                     
                     data_a = augment_data(data,self.cfg.USE_DEPTH)

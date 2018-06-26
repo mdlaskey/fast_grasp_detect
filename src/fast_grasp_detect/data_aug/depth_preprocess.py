@@ -1,11 +1,12 @@
 import numpy as np
 
+import IPython
 
 
 def depth_to_3ch(img):
 
 	new_img = np.zeros(img.shape[0],img.shape[1],3)
-
+    IPython.embed()
 	for i in range(3):
 		new_img[:,:,i] = img
 
@@ -25,6 +26,6 @@ def depth_to_net_dim(img):
 
 	return img
 
-def datum_to_net_dim(img):
+def datum_to_net_dim(datum):
 
 	datum['d_img'] = depth_to_net_dim(datum['d_img'])
