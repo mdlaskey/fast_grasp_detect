@@ -24,8 +24,8 @@ class CONFIG(object):
 		# ROLLOUT_PATH = DATA_PATH+'rollouts/'
 		# BC_HELD_OUT = DATA_PATH+'held_out_bc'
 
-		self.ROLLOUT_PATH = self.DATA_PATH+'rollouts_dart_cal/'
-		self.BC_HELD_OUT = self.DATA_PATH+'held_out_cal'
+		self.ROLLOUT_PATH = self.DATA_PATH+'rollouts_nytimes/'
+		self.BC_HELD_OUT = self.DATA_PATH+'nytimes_heldout'
 
 
 

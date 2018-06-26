@@ -52,6 +52,7 @@ class YOLO_CONV(object):
                                 activation_fn=leaky_relu(alpha),
                                 weights_initializer=tf.truncated_normal_initializer(0.0, 0.01),
                                 weights_regularizer=slim.l2_regularizer(0.0005)):
+               
                 net = tf.pad(images, np.array([[0, 0], [3, 3], [3, 3], [0, 0]]), name='pad_1')
                 net = slim.conv2d(net, 64, 7, 2, padding='VALID', scope='conv_2')
                 net = slim.max_pool2d(net, 2, padding='SAME', scope='pool_3')

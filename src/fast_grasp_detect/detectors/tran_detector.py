@@ -17,12 +17,15 @@ from fast_grasp_detect.visualizers.draw_cross_hair import DrawPrediction
 
 class SDetector(object):
 
-    def __init__(self,net_name):
+    def __init__(self,net_name,yc = None):
         
         
 
         self.cfg = CONFIG()
-        self.yc = YOLO_CONV(self.cfg,is_training = False)
+        if yc == None:
+            self.yc = YOLO_CONV(self.cfg,is_training = False)
+        else: 
+            self.yc = yc
 
         self.classes = self.cfg.CLASSES
         self.num_class = len(self.classes)

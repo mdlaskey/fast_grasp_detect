@@ -211,7 +211,7 @@ class QueryLabeler():
 
 
     def get_label(self):
-        if self.image == None:
+        if self.image.any() == None:
             self.current_image = self.cam.read_color_data()
         else: 
             self.current_image = self.image
@@ -366,10 +366,11 @@ class QueryLabeler():
     def setClass(self):
     	self.currentLabelclass = self.classcandidate.get()
     	print 'set label class to :',self.currentLabelclass
-        mapping = {"q": ("grasp", 0), "w": ("singulate", 1), "e": ("suction", 2), "r": ("quit",3)}
-        self.currentLabelclass = mapping[class_label][0]
-        self.classcandidate.current(mapping[class_label][1])
-        print 'set label class to :',self.currentLabelclass
+        # mapping = {"q": ("grasp", 0), "w": ("singulate", 1), "e": ("suction", 2), "r": ("quit",3)}
+        # IPython.embed()
+        # self.currentLabelclass = mapping[self.currentLabelclass][0]
+        # self.classcandidate.current(mapping[self.currentLabelclass][1])
+        # print 'set label class to :',self.currentLabelclass
 
     def run(self,cam,image = None):
         #self.parent.resizable(width =  True, height = True)
