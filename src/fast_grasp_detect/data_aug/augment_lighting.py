@@ -55,7 +55,7 @@ def get_depth_aug(img_src):
     trans_img = []
     trans_img.append(img_src)
     trans_img.append(addGaussianNoise(img_src))
-    trans_img.appned(addSaltPepperNoise(img_src))
+    trans_img.append(addSaltPepperNoise(img_src))
 
     return trans_img
 

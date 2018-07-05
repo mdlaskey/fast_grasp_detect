@@ -46,7 +46,7 @@ class SNet(object):
                       is_training=True,
                       scope='yolo'):
        
-        with tf.variable_scope(scope,reuse=True):
+        with tf.variable_scope(scope,reuse=tf.AUTO_REUSE):
             with slim.arg_scope([slim.conv2d, slim.fully_connected],
                                 activation_fn=leaky_relu(alpha),
                                 weights_initializer=tf.truncated_normal_initializer(0.0, 0.01),

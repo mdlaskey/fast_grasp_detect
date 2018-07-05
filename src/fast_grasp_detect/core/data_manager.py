@@ -145,7 +145,9 @@ class data_manager(object):
                     if self.cfg.USE_DEPTH:
                         grasp_point[0] = datum_to_net_dim(grasp_point[0])
                         
-                    features = self.yc.extract_conv_features(grasp_point[0]['c_img'])
+                        features = self.yc.extract_conv_features(grasp_point[0]['d_img'])
+                    else:
+                        features = self.yc.extract_conv_features(grasp_point[0]['c_img'])
 
                     label = self.cfg.compute_label(grasp_point[0])
                     self.test_labels.append({'c_img': grasp_point[0]['c_img'], 'label': label, 'features':features})

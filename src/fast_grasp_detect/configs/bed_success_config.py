@@ -67,6 +67,8 @@ class CONFIG(object):
 		self.FLIPPED = False
 		self.LIGHTING_NOISE = True
 
+		self.USE_DEPTH = True
+
 
 		self.QUICK_DEBUG = True
 
